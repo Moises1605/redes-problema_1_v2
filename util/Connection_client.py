@@ -33,6 +33,14 @@ class Connection_client:
             message = '{}: {}'.format(self.nickname, input(''))
             self.client.send(message.encode('ascii'))
 
-connection = Connection_client()
-connection.connect()
-connection.receive()
+# connection = Connection_client()
+# connection.connect()
+# connection.receive()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('10.0.0.130', 12345))
+st = 'Hello, world'
+byt=st.encode()
+s.sendall(byt)
+data = s.recv(1024)
+s.close()
+print(repr(data))

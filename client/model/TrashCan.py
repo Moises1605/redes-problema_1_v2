@@ -11,10 +11,17 @@ class TrashCan(client):
         self.latitude = latitude
         self.latitude = longitude
         self.identifier = identifier
+        self.capacity_total = 100
 
     # Método responsável por colocar lixo na lixeira
     def put_trash(self,value=3):
-        self.capacity += value
+        capacity_temp = self.capacity + value
+
+        if(capacity_temp <= self.capacity_total):
+            self.capacity += value
+            return bool("true")
+        
+        return bool("false")
     
     # Método responsável por mudar o status da lixeira (Liberada/bloqueada)
     def set_status(self,status):

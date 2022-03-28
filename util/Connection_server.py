@@ -12,8 +12,11 @@ class Connection_server:
     
     def connect(self):
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server.setblocking(0)
         self.server.bind((self.host, self.port))
         self.server.listen()
+
+        return self.server
     
     def broadcast(message,self):
         for client in self.clients:
